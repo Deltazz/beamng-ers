@@ -1,0 +1,14 @@
+{
+    "ers_strategy": {
+        "order": 1, 
+        "onUp": "electrics.values.ers_strategy = 1 + (electrics.values.ers_strategy or 0)",
+        "title": "ERS: Cycle Strategy",
+        "desc": "Cycles through the available ERS strategies"
+    },
+    "ers_overtake": {
+        "order": 2, 
+        "onUp": "electrics.values.ers_overtake = 1 - (electrics.values.ers_overtake or 0)",
+        "title": "ERS: Force Overtake Mode",
+        "desc": "Forces the ERS to enter Overtake Mode (Full Deployment)"
+    }
+}

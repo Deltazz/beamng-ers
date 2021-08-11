@@ -1,0 +1,17 @@
+{
+  "domElement": "<ers-dash></ers-dash>",
+  "name": "ERS Dash",
+  "types": [
+    "ui.apps.categories.vehicle_info"
+  ],
+  "description": "Displays ERS information.",
+  "css": {
+    "height": "125px",
+    "width": "300px",
+    "min-height": "125px",
+    "min-width": "300px"
+  },
+  "author": "Deltaz",
+  "version": "0.1",
+  "directive": "ersDash"
+}

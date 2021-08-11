@@ -1,0 +1,159 @@
+{
+"MGU_K": {
+    "information":{
+        "authors":"Deltaz",
+        "name":"MGU-K"
+    },
+    "slotType" : "MGU_K",
+    "slots": [
+        ["type", "default", "description"],
+        ["front_diff", "front_diff", "Front Differential"],
+        ["mgu_k_battery", "mgu_k_battery", "MGU-K Battery"],
+    ],
+    "powertrain": [
+        ["type", "name", "inputName", "inputIndex"],
+        ["electricMotor", "mgukEngine", "dummy", 0],
+    ],
+    "mgukEngine":{
+        "torque":[
+            ["rpm", "torque"],
+            [0, 270],
+            [500, 270],
+            [1000, 265],
+            [1500, 260],
+            [2000, 255],
+            [3000, 245],
+            [4000, 235],
+            [5000, 225],
+            [6000, 215],
+            [7000, 205],
+            [8000, 195],
+            [9000, 185],
+            [10000, 175],
+            [11000, 165],
+            [12000, 155],
+            [13000, 145],
+            [14000, 135],
+            [15000, 125],
+            [16000, 117.5],
+            [17000, 112.5],
+            [18000, 106.8],
+            [19000, 102.5],
+            [20000, 94.3],
+            [21000, 88.2],
+            [22000, 82.9],
+        ],
+        "torqueReactionNodes:":["a0", "a1", "a2"]
+        "maxRPM":22000,
+        "inertia":0.10,
+        "friction":2,
+        "dynamicFriction":0.0005,
+        "electricalEfficiency":0.95,
+        "energyStorage": "mgu_k_battery",
+        "electricsThrottleName": "mgukThrottle",
+
+        "soundConfig": "soundConfigFront",
+    },
+    "soundConfigFront": {
+        "sampleName": "ElectricMotor",
+        "mainGain": 14,
+        //"maxLoadMix": 0.65,
+        //"minLoadMix": 0,
+        //"onLoadGain":1,
+        //"offLoadGain":0.65,
+        //"eqLowGain": -15,
+        //"eqLowFreq": 100,
+        //"eqLowWidth": 0.05,
+        //"eqHighGain": -5,
+        //"eqHighFreq": 6000,
+        //"eqHighWidth": 0.1,
+        //"eqFundamentalGain": -5,
+    },
+    "vehicleController": {
+        "shiftLogicName":"LMH",
+        "motorNames": ["mgukEngine"],
+        "topSpeedLimitReverse": 15,
+    },
+    "variables": [
+        ["name", "type", "unit", "category", "default", "min", "max", "title", "description"],
+        ["$mgu_k_lift_harvest", "range", "%", "MGU-K", 50.0, 0.0, 100.0, "MGU-K Lift Harvest", "How aggressively will MGU-K harvest energy when throttle is released", {"subCategory": "Strategy"}],
+        ["$mgu_k_brake_harvest", "range", "%", "MGU-K", 50.0, 0.0, 100.0, "MGU-K Brake Harvest", "How aggressively will MGU-K harvest energy when brakes are applied", {"subCategory": "Strategy"}],
+    ],
+}
+"front_diff": {
+    "information":{
+        "authors":"Deltaz",
+        "name":"Viscous Front Differential"
+    },
+    "slotType" : "front_diff",
+    "slots": [
+        ["type", "default", "description"],
+        ["finaldrive_electric","finaldrive_electric_adjustable", "Front Final Drive", {"coreSlot":true}],
+        ["halfshafts_electric","halfshafts_electric", "Front Halfshafts"],
+    ],
+    "powertrain" : [
+        ["type", "name", "inputName", "inputIndex"],
+        ["torsionReactor", "torsionReactorF", "mgukEngine", 1],
+        ["differential", "differential_F", "torsionReactorF", 1, {"diffType":"viscous", "friction": 8}],
+    ],
+    "differential_F": {
+        "friction": 1.7,
+        "dynamicFriction": 0.001,
+        "torqueLossCoef": 0.017,
+    },
+    "torsionReactorF": {
+        "torqueReactionNodes:":["engine1", "engine2", "engine3"],
+    },
+},
+"finaldrive_electric_adjustable": {
+    "information":{
+        "authors":"Deltaz",
+        "name":"Adjustable Front Final Drive"
+    },
+
+    "slotType" : "finaldrive_electric",
+
+    "variables": [
+        ["name", "type", "unit", "category", "default", "min", "max", "title", "description"],
+        ["$finaldrive_F", "range", ":1", "MGU-K", 10.0, 7.0, 13.0, "Final Drive Gear Ratio", "Torque multiplication ratio", {"subCategory": "Differential"}],
+    ],
+
+    "torsionReactorF" : {
+        "gearRatio":"$finaldrive_F",
+    },
+},
+"halfshafts_electric": {
+    "information":{
+        "authors":"BeamNG",
+        "name":"Front Halfshafts"
+    },
+    "slotType" : "halfshafts_electric",
+    "powertrain" : [
+        ["type", "name", "inputName", "inputIndex"],
+        ["shaft", "wheelaxleFL", "differential_F", 1, {"friction":0, "connectedWheel":"FL"}],
+        ["shaft", "wheelaxleFR", "differential_F", 2, {"friction":0, "connectedWheel":"FR"}],
+    ],
+},
+"mgu_k_battery": {
+    "information":{
+        "authors":"Deltaz",
+        "name":"MGU-K Battery"
+    },
+    "slotType" : "mgu_k_battery",
+    "flexbodies": [
+    ],
+    "energyStorage": [
+        ["type", "name"],
+        ["electricBattery", "mgu_k_battery"],
+    ],
+    "variables": [
+        ["name", "type", "unit", "category", "default", "min", "max", "title", "description"],
+        ["$mgu_k_energy", "range", "kWh", "MGU-K", 4, 0, 4, "MGU-K Initial Energy", "Initial battery charge", {"stepDis":0.5, "subCategory": "Battery"}],
+    ],
+    "mgu_k_battery": {
+        "energyType":"electricEnergy",
+        "batteryCapacity": 4,
+        "startingCapacity": "$mgu_k_energy",
+    }
+}
+}

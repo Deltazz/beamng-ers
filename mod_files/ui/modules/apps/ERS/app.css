@@ -1,0 +1,31 @@
+#dash {
+    display: flex;
+}
+
+#centerContainer {
+    background-color: rebeccapurple;
+    width: 300px;
+    height: 125px;
+}
+
+#centerPiece{
+    background-color: black;
+    width: inherit;
+    height: 125px;
+}
+
+.displayText {
+    color: deeppink;
+    font-size: 22px;
+    font-family: monospace;
+}
+
+td {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+table {
+    padding-top: 10px;
+    padding-left: 10px;
+}
