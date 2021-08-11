@@ -1,0 +1,1 @@
+powershell.exe -noexit -noprofile -executionpolicy bypass -file ".\ps\ApplyErs.ps1" %1
