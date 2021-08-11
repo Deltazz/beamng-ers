@@ -1,7 +1,5 @@
 # Installing ERS Onto a Car
-1. Copy the mod .zip you wish to add ERS to into the same folder as `ApplyErs.ps1`
-2. Shift + right click in the file explorer to open a PowerShell in the same folder as `ApplyErs.ps1`
-3. Run `.\ApplyErs.ps1 <name of zip file>`
+Drag and drop your BeamNG.drive car (.zip exported from Automation) onto `ApplyErs.cmd`
 
 This creates a copy of the mod, but with the ERS installed. Simply install that mod into BeamNG.drive as you would with any other mod.
 
