@@ -491,8 +491,8 @@ local function mgukMotorUpdate(dt)
     local dtT = dt * mgu_k.friction * (-1)
     local grossWork = dtT * (dtT * mgu_k.halfInvEngInertia + engineAV)
     local spentEnergy = grossWork / mgu_k.electricalEfficiencyTable[floor(mgu_k.engineLoad * 100) * 0.01]
-    local storageRatio = mgu_k.energyStorageRegenRatios[storage.name]
-    storage.storedEnergy = clamp(storage.storedEnergy - (spentEnergy * storageRatio), 0, storage.energyCapacity)
+    local regenEfficiency = 0.6
+    storage.storedEnergy = clamp(storage.storedEnergy - (spentEnergy * regenEfficiency), 0, storage.energyCapacity)
   end
   -- Disable ERS overtake override if brakes are applied
   if M.brake > 0 then
