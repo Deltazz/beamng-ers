@@ -2,7 +2,8 @@ $zip_path=$args[0]
 Write-Host "Unzipping $zip_path into temp"
 Expand-Archive $zip_path temp
 $car_name = (Get-ChildItem -Path temp\vehicles -Name)
-$car_jbeam_file_name = ($car_name -replace '\w+?_(.*)','$1.jbeam')
+$car_jbeam_file_name = (Get-ChildItem -Path ./temp/vehicles/$car_name/ -Filter "*.dae" -Name)
+$car_jbeam_file_name = $car_jbeam_file_name -replace '(\w+)\.dae','$1.jbeam'
 $car_jbeam_path = "temp\vehicles\$car_name\$car_jbeam_file_name"
 
 Write-Host "Adding MGU-K slot to main jbeam file"
