@@ -27,7 +27,9 @@ Copy-Item "mod_files\vehicles\_vehicle_name_\mgu_k.jbeam" -Destination "temp\veh
 
 Write-Host "Creating a new BeamNG.drive mod (${car_name}_hybrid.zip)"
 # Create new beam zip
-Compress-Archive -Path temp\* -DestinationPath "${car_name}_hybrid.zip"
+cd temp
+tar -a -cf ..\${car_name}_hybrid.zip *
+cd ..
 
 Write-Host "Removing temp folder"
 # Remove temp folder
