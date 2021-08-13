@@ -5,13 +5,13 @@
 #centerContainer {
     background-color: rebeccapurple;
     width: 300px;
-    height: 125px;
+    height: 130px;
 }
 
 #centerPiece{
     background-color: black;
     width: inherit;
-    height: 125px;
+    height: 130px;
 }
 
 .displayText {
@@ -21,8 +21,8 @@
 }
 
 td {
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 table {

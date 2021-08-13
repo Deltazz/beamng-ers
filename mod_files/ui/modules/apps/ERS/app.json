@@ -6,9 +6,9 @@
   ],
   "description": "Displays ERS information.",
   "css": {
-    "height": "125px",
+    "height": "130px",
     "width": "300px",
-    "min-height": "125px",
+    "min-height": "130px",
     "min-width": "300px"
   },
   "author": "Deltaz",
